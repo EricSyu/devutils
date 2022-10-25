@@ -19,4 +19,4 @@ RUN apt-get update && \
     telnet \
     git     
 
-CMD echo 'hello~~'
+CMD ["bash"]
