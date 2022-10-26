@@ -21,8 +21,8 @@ RUN apt-get update && \
 
 RUN apt-get install -y ca-certificates \
     gnupg \
-    lsb-release &&
-    mkdir -p /etc/apt/keyrings && 
+    lsb-release && \
+    mkdir -p /etc/apt/keyrings && \
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg && \ 
     echo \
     "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
@@ -31,4 +31,3 @@ RUN apt-get install -y ca-certificates \
     apt-get install -y docker-ce-cli docker-compose-plugin 
 
 CMD ["bash"]
-
