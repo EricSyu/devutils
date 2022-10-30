@@ -34,9 +34,12 @@ RUN apt-get install -y ca-certificates \
     apt-get update && \
     apt-get install -y docker-ce-cli docker-compose-plugin 
 
-# kubectl
+# k8s
 RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" && \
-    install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+    install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl && \
+    curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.17.0/kind-linux-amd64 && \
+    chmod +x ./kind && \
+    mv ./kind /usr/local/bin/kind
 
 # zsh
 # p10k/tmux
@@ -51,7 +54,7 @@ RUN apt-get install -y zsh locales unzip && \
     cp exa-linux-x86_64-v0.10.1/bin/exa /usr/local/bin/
 
 # others
-RUN apt-get install -y jq tree && \
+RUN apt-get install -y jq tree tmux && \
     wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq && \
     chmod +x /usr/bin/yq && \
     wget https://github.com/antonmedv/fx/releases/latest/download/fx_linux_amd64 -O /usr/bin/fx && \
