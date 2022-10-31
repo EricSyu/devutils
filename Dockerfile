@@ -46,9 +46,6 @@ RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/s
 ENV LC_ALL=en_US.UTF-8
 RUN apt-get install -y zsh locales unzip && \
     locale-gen en_US.UTF-8 && \
-    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh && \
-    echo 'wait 5s for "git clone zplug"' ; sleep 5s && \
-    mv ~/.zplug . && \
     wget https://github.com/ogham/exa/releases/download/v0.10.1/exa-linux-x86_64-v0.10.1.zip -O exa-linux-x86_64-v0.10.1.zip && \
     unzip exa-linux-x86_64-v0.10.1.zip -d exa-linux-x86_64-v0.10.1 && \
     cp exa-linux-x86_64-v0.10.1/bin/exa /usr/local/bin/
